@@ -1,18 +1,3 @@
-<!doctype html>
-<html lang="el">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bonusaki — Σκάναρε & κέρδισε (demo)</title>
-<meta name="description" content="Demo του Bonusaki: σκάναρε ένα ποτήρι, παίξε scratch-and-win και κέρδισε δώρο κατευθείαν στο πορτοφόλι σου." />
-<link rel="icon" href="./favicon.svg" />
-<meta property="og:title" content="Bonusaki — Σκάναρε & κέρδισε" />
-<meta property="og:description" content="Σκάναρε ένα ποτήρι, παίξε scratch-and-win, κέρδισε δώρο στο πορτοφόλι σου." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
   tailwind.config = {
     theme: { extend: {
       fontFamily: { display: ['Fredoka','Comfortaa','system-ui','sans-serif'] },
@@ -484,6 +469,3 @@ function simulateRedeem(kind){
 }
 
 renderCustomer('form');
-</script>
-</body>
-</html>
