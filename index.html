@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Bonusaki — scratch-and-win loyalty (demo)</title>
 <meta name="description" content="Front-end demo of Bonusaki: turn any coffee purchase into a scratch-and-win that drops prizes into the customer's wallet." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23fbbf24'/%3E%3Cstop offset='1' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ctext x='16' y='23' font-family='system-ui' font-size='20' font-weight='800' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+<meta property="og:title" content="Bonusaki — scratch-and-win loyalty" />
+<meta property="og:description" content="Scan a cup, play a scratch-and-win, win a prize straight to your wallet." />
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   body{ -webkit-tap-highlight-color: transparent; }
@@ -12,23 +15,26 @@
   .tabbtn[aria-selected="true"]{ background:#111; color:#fff; }
   canvas{ touch-action:none; }
   @keyframes pop{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
-  .pop{animation:pop .25s ease-out}
+  .pop{animation:pop .28s cubic-bezier(.2,.8,.2,1.2)}
+  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 </style>
 </head>
-<body class="bg-neutral-100 text-neutral-900">
+<body class="min-h-screen bg-gradient-to-b from-white via-neutral-50 to-neutral-200 text-neutral-900">
+
+<canvas id="confetti" class="pointer-events-none fixed inset-0 z-50"></canvas>
 
 <!-- Top bar -->
-<header class="sticky top-0 z-10 border-b border-neutral-200 bg-white/90 backdrop-blur">
+<header class="sticky top-0 z-20 border-b border-neutral-200 bg-white/85 backdrop-blur">
   <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
     <div class="flex items-center gap-2">
-      <div class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-amber-400 to-pink-500 text-white font-black">B</div>
+      <div class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-amber-400 to-pink-500 font-black text-white">B</div>
       <span class="text-lg font-semibold tracking-tight">Bonusaki</span>
       <span class="ml-1 rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-medium text-amber-800">front-end demo</span>
     </div>
     <nav class="flex gap-1 text-sm" id="tabs">
-      <button class="tabbtn rounded-full px-3 py-1.5 font-medium" data-tab="customer" aria-selected="true">Customer</button>
-      <button class="tabbtn rounded-full px-3 py-1.5 font-medium" data-tab="merchant" aria-selected="false">Merchant</button>
-      <button class="tabbtn rounded-full px-3 py-1.5 font-medium" data-tab="cashier" aria-selected="false">Cashier</button>
+      <button class="tabbtn rounded-full px-3 py-1.5 font-medium transition-colors" data-tab="customer" aria-selected="true">Customer</button>
+      <button class="tabbtn rounded-full px-3 py-1.5 font-medium transition-colors" data-tab="merchant" aria-selected="false">Merchant</button>
+      <button class="tabbtn rounded-full px-3 py-1.5 font-medium transition-colors" data-tab="cashier" aria-selected="false">Cashier</button>
     </nav>
   </div>
 </header>
@@ -44,7 +50,7 @@
   <section data-panel="customer">
     <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
       <div>
-        <h1 class="text-3xl font-bold tracking-tight">Scan a cup. Win instantly.</h1>
+        <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Scan a cup. Win instantly.</h1>
         <p class="mt-3 text-neutral-600">
           A unique QR code on every cup. The customer scans, enters their email, and plays a
           scratch-and-win. The prize drops straight into Apple/Google Wallet — no app to install.
@@ -54,15 +60,26 @@
           <li>📲 <b>Frictionless</b> — wallet pass, not a clunky loyalty app.</li>
           <li>📈 <b>Builds a marketing list</b> — every play captures an email.</li>
         </ul>
-        <p class="mt-5 text-xs text-neutral-400">Try it → tap “Reveal”, then scratch the card.</p>
+
+        <div class="mt-6 inline-flex items-center gap-4 rounded-2xl border border-neutral-200 bg-white p-4">
+          <img src="./qr.svg" alt="Scan to open the demo on your phone" class="h-24 w-24" width="96" height="96" />
+          <div class="text-sm">
+            <div class="font-semibold">Scan from your phone 📷</div>
+            <div class="mt-0.5 text-neutral-500">Opens this demo so you can play the<br />scratch-and-win on a real device.</div>
+          </div>
+        </div>
+        <p class="mt-4 text-xs text-neutral-400">Or try it here → tap “Reveal”, then scratch the card with your cursor.</p>
       </div>
 
       <!-- phone -->
       <div class="mx-auto w-full max-w-[340px]">
-        <div class="phone overflow-hidden rounded-[2.2rem] border-[10px] border-neutral-900 bg-neutral-900">
-          <div id="screen" class="h-[600px] overflow-hidden" style="background:#7c1d3a">
-            <!-- filled by JS -->
+        <div class="phone relative overflow-hidden rounded-[2.4rem] border-[10px] border-neutral-900 bg-neutral-900">
+          <div class="absolute left-1/2 top-0 z-20 h-6 w-32 -translate-x-1/2 rounded-b-2xl bg-neutral-900"></div>
+          <div class="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between px-7 py-2 text-[11px] font-semibold text-white/95">
+            <span>9:41</span>
+            <span class="tracking-tight">5G&nbsp;&nbsp;100%&nbsp;🔋</span>
           </div>
+          <div id="screen" class="h-[600px] overflow-hidden" style="background:#7c1d3a"></div>
         </div>
       </div>
     </div>
@@ -97,7 +114,7 @@
         <div id="weightmeter" class="flex items-center gap-2 text-xs"></div>
       </div>
       <div id="tiers" class="space-y-2"></div>
-      <p class="mt-3 text-xs text-neutral-500">Weights must total 100% to activate — every scan wins exactly one tier.</p>
+      <p class="mt-3 text-xs text-neutral-500">Weights must total 100% to activate — every scan wins exactly one tier. Edit a number to see the meter react.</p>
     </div>
   </section>
 
@@ -117,9 +134,9 @@
           </div>
         </div>
         <div class="mt-3 grid grid-cols-1 gap-2">
-          <button class="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-semibold text-white" onclick="simulateRedeem('ok')">Simulate: scan a valid pass</button>
-          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium" onclick="simulateRedeem('used')">Simulate: scan an already-used pass</button>
-          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium" onclick="simulateRedeem('invalid')">Simulate: scan a tampered code</button>
+          <button class="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-semibold text-white active:scale-[.98]" onclick="simulateRedeem('ok')">Simulate: scan a valid pass</button>
+          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium active:scale-[.98]" onclick="simulateRedeem('used')">Simulate: scan an already-used pass</button>
+          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium active:scale-[.98]" onclick="simulateRedeem('invalid')">Simulate: scan a tampered code</button>
         </div>
       </div>
       <p class="mt-3 text-[11px] text-neutral-400">In the real app this validates an HMAC-signed barcode, flips the voucher atomically (single-use), and works offline.</p>
@@ -155,19 +172,18 @@ function pickPrize(){
   return PRIZES[PRIZES.length-1];
 }
 let currentPrize = null;
-
 const screen = document.getElementById('screen');
 
 function renderCustomer(state){
   if(state==='form'){
     screen.innerHTML = `
-      <div class="flex h-full flex-col items-center justify-center px-6 text-center text-white">
+      <div class="flex h-full flex-col items-center justify-center px-6 pt-8 text-center text-white">
         <div class="mb-1 text-sm font-medium opacity-80">Dev Cafe</div>
         <h1 class="text-3xl font-bold">Scratch &amp; win!</h1>
         <p class="mt-2 text-sm opacity-80">Enter your email to reveal your prize. Every scan wins!</p>
         <input id="email" type="email" placeholder="you@example.com"
           class="mt-6 w-full rounded-xl border-0 px-4 py-3 text-center text-neutral-900 outline-none ring-2 ring-white/40 focus:ring-white" />
-        <button id="play" class="mt-3 w-full rounded-xl bg-white px-4 py-3 font-semibold text-neutral-900 shadow-lg active:scale-95">Reveal my prize 🎁</button>
+        <button id="play" class="mt-3 w-full rounded-xl bg-white px-4 py-3 font-semibold text-neutral-900 shadow-lg transition active:scale-95">Reveal my prize 🎁</button>
         <p class="mt-4 text-xs opacity-60">Free to play with purchase · one play per sticker</p>
       </div>`;
     document.getElementById('play').onclick = () => { currentPrize = pickPrize(); renderCustomer('scratch'); };
@@ -176,7 +192,7 @@ function renderCustomer(state){
 
   if(state==='scratch'){
     screen.innerHTML = `
-      <div class="flex h-full flex-col items-center justify-center px-6 text-center text-white">
+      <div class="flex h-full flex-col items-center justify-center px-6 pt-8 text-center text-white">
         <div class="mb-3 text-sm opacity-80">Scratch to reveal!</div>
         <div class="relative h-44 w-full overflow-hidden rounded-2xl shadow-xl">
           <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-amber-300 to-pink-400 text-neutral-900">
@@ -193,7 +209,7 @@ function renderCustomer(state){
 
   if(state==='done'){
     screen.innerHTML = `
-      <div class="flex h-full flex-col items-center justify-center px-6 text-center text-white">
+      <div class="flex h-full flex-col items-center justify-center px-6 pt-8 text-center text-white">
         <div class="pop w-full rounded-2xl bg-white p-6 text-neutral-900 shadow-xl">
           <div class="text-xs font-medium uppercase tracking-wide text-neutral-400">You won</div>
           <div class="mt-1 text-2xl font-bold">${currentPrize.reward}</div>
@@ -208,6 +224,7 @@ function renderCustomer(state){
         <p class="mt-2 text-xs opacity-70">Show the code or wallet pass at the counter to redeem.</p>
       </div>`;
     document.getElementById('again').onclick = () => renderCustomer('form');
+    confettiBurst();
   }
 }
 function randCode(){ const a='0123456789ABCDEFGHJKMNPQRSTVWXYZ'; let s=''; for(let i=0;i<10;i++) s+=a[Math.floor(Math.random()*a.length)]; return s; }
@@ -247,6 +264,27 @@ function cleared(ctx,w,h){
   return t? c/t : 0;
 }
 
+// ---------- confetti ----------
+function confettiBurst(){
+  const c = document.getElementById('confetti'); const ctx = c.getContext('2d');
+  c.width = innerWidth; c.height = innerHeight;
+  const colors = ['#fbbf24','#ec4899','#34d399','#60a5fa','#f87171','#a78bfa'];
+  const parts = [];
+  for(let i=0;i<110;i++){
+    parts.push({ x: innerWidth*(.35+Math.random()*.3), y: innerHeight*0.3,
+      vx:(Math.random()-.5)*9, vy:Math.random()*-9-3, g:0.28,
+      col:colors[i%colors.length], size:4+Math.random()*5, rot:Math.random()*6, vr:(Math.random()-.5)*.35 });
+  }
+  let t=0;
+  (function frame(){
+    t++; ctx.clearRect(0,0,c.width,c.height);
+    parts.forEach(p=>{ p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.col;
+      ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*1.6); ctx.restore(); });
+    if(t<110) requestAnimationFrame(frame); else ctx.clearRect(0,0,c.width,c.height);
+  })();
+}
+
 // ---------- merchant charts ----------
 (function(){
   const bars = document.getElementById('scanbars');
@@ -265,18 +303,13 @@ function cleared(ctx,w,h){
       <div class="mt-1 h-2 overflow-hidden rounded-full bg-neutral-100"><div class="h-full rounded-full bg-pink-400" style="width:${s.pct}%"></div></div>
     </div>`).join('');
 
-  // editable prize tiers with a live weight meter
-  const tiers = [
-    {label:'Free coffee', pct:1},
-    {label:'Half-price pastry', pct:9},
-    {label:'5% off next order', pct:90},
-  ];
+  const tiers = [ {label:'Free coffee', pct:1}, {label:'Half-price pastry', pct:9}, {label:'5% off next order', pct:90} ];
   const tiersEl = document.getElementById('tiers');
   function renderTiers(){
     tiersEl.innerHTML = tiers.map((t,i) => `
       <div class="flex items-center gap-3 rounded-lg border border-neutral-200 p-3">
         <input class="flex-1 rounded border border-neutral-300 px-2 py-1 text-sm" value="${t.label}" data-l="${i}">
-        <input type="number" class="w-20 rounded border border-neutral-300 px-2 py-1 text-sm text-right" value="${t.pct}" data-w="${i}"> <span class="text-xs text-neutral-400">% win</span>
+        <input type="number" class="w-20 rounded border border-neutral-300 px-2 py-1 text-right text-sm" value="${t.pct}" data-w="${i}"> <span class="text-xs text-neutral-400">% win</span>
       </div>`).join('');
     tiersEl.querySelectorAll('[data-w]').forEach(inp => inp.oninput = () => { tiers[+inp.dataset.w].pct = +inp.value||0; meter(); });
     meter();
@@ -286,7 +319,7 @@ function cleared(ctx,w,h){
     const ok = sum===100;
     document.getElementById('weightmeter').innerHTML = `
       <span class="${ok?'text-green-600':'text-amber-600'}">Total: ${sum.toFixed(0)}%</span>
-      <div class="h-1.5 w-28 overflow-hidden rounded-full bg-neutral-200"><div class="h-full rounded-full ${ok?'bg-green-500':'bg-amber-500'}" style="width:${Math.min(100,sum)}%"></div></div>
+      <div class="h-1.5 w-28 overflow-hidden rounded-full bg-neutral-200"><div class="h-full rounded-full ${ok?'bg-green-500':'bg-amber-500'} transition-all" style="width:${Math.min(100,sum)}%"></div></div>
       <span class="${ok?'text-green-600':'text-amber-600'}">${ok?'✓ 100%':(sum<100?'under':'over')}</span>`;
   }
   renderTiers();
@@ -307,7 +340,6 @@ function simulateRedeem(kind){
   </div>`;
 }
 
-// initial render
 renderCustomer('form');
 </script>
 </body>
