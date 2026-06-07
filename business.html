@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bonusaki — Για επιχειρήσεις</title>
+<meta name="description" content="Γιατί το Bonusaki συμφέρει το κατάστημα: δεν δίνεις εκπτώσεις, φέρνεις επαναλαμβανόμενες επισκέψεις. Υπολόγισε το ROI." />
+<link rel="icon" href="./favicon.svg" />
+<meta property="og:title" content="Bonusaki — Για επιχειρήσεις" />
+<meta property="og:description" content="Δεν δίνεις εκπτώσεις — μετατρέπεις λίγο περιθώριο σε επαναλαμβανόμενες επισκέψεις και λίστα πελατών." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { display: ['Fredoka','Comfortaa','system-ui','sans-serif'] },
+    colors: { cream:'#FAF1DA', sun:'#FBD03B', sky:'#9FD8F5', ink:'#1b1b1b' },
+    boxShadow: { pop:'4px 4px 0 #1b1b1b', popsm:'3px 3px 0 #1b1b1b' },
+  }}};
+</script>
+<style>
+  body{ font-family:'Fredoka','Comfortaa',system-ui,sans-serif; -webkit-tap-highlight-color:transparent; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; height:10px; border-radius:999px; border:2px solid #1b1b1b; background:#fff; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:24px; height:24px; border-radius:999px; background:#FBD03B; border:2px solid #1b1b1b; cursor:pointer; box-shadow:2px 2px 0 #1b1b1b; }
+  input[type=range]::-moz-range-thumb{ width:22px; height:22px; border-radius:999px; background:#FBD03B; border:2px solid #1b1b1b; cursor:pointer; }
+</style>
+</head>
+<body class="min-h-screen bg-cream text-ink">
+
+<!-- Top bar -->
+<header class="sticky top-0 z-20 border-b-2 border-ink bg-cream/90 backdrop-blur">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+    <a href="./index.html" class="flex items-center gap-2">
+      <div class="relative pt-2">
+        <div class="absolute -top-0.5 left-1/2 flex -translate-x-1/2 gap-0.5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBD03B" stroke="#1b1b1b" stroke-width="2.5" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBD03B" stroke="#1b1b1b" stroke-width="2.5" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBD03B" stroke="#1b1b1b" stroke-width="2.5" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+        </div>
+        <div id="logo-pill" class="rounded-full border-2 border-ink bg-sun px-3 py-1 font-display text-lg font-bold leading-none shadow-popsm">Bonusaki</div>
+      </div>
+      <span class="rounded-full border-2 border-ink bg-white px-2 py-0.5 text-[11px] font-semibold">Για επιχειρήσεις</span>
+    </a>
+    <a href="./index.html" class="rounded-full border-2 border-ink bg-white px-3 py-1.5 text-sm font-display font-semibold shadow-popsm transition active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">‹ Στο demo</a>
+  </div>
+</header>
+
+<main class="mx-auto max-w-5xl px-4 py-8">
+
+  <!-- HERO -->
+  <section class="text-center">
+    <div class="mx-auto mb-3 flex w-fit items-center gap-1">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBD03B" stroke="#1b1b1b" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#FBD03B" stroke="#1b1b1b" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBD03B" stroke="#1b1b1b" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+    </div>
+    <h1 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Δεν δίνεις εκπτώσεις.<br />Φέρνεις πελάτες πίσω.</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-ink/70">
+      Το Bonusaki μετατρέπει λίγο περιθώριο σε <b>επαναλαμβανόμενες επισκέψεις</b> και μια
+      <b>λίστα πελατών</b> — με κόστος που το ορίζεις εσύ στο cent και που το πληρώνεις
+      <b>μόνο όταν ο πελάτης ξαναέρθει</b>.
+    </p>
+  </section>
+
+  <!-- WHY IT PAYS -->
+  <section class="mt-10">
+    <h2 class="font-display text-2xl font-bold">Γιατί συμφέρει το κατάστημα</h2>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-2xl border-2 border-ink bg-white p-4 shadow-pop">
+        <div class="grid h-10 w-10 place-items-center rounded-xl border-2 border-ink bg-sun text-xl shadow-popsm">💸</div>
+        <h3 class="mt-3 font-display font-bold">Πληρώνεις κόστος, όχι λιανική</h3>
+        <p class="mt-1 text-sm text-ink/70">Ένας «δωρεάν καφές» κοστίζει ~0,40 €, όχι 3 €. Το δώρο φαίνεται μεγάλο, το κόστος είναι μικρό.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-ink bg-white p-4 shadow-pop">
+        <div class="grid h-10 w-10 place-items-center rounded-xl border-2 border-ink bg-sky text-xl shadow-popsm">🔁</div>
+        <h3 class="mt-3 font-display font-bold">Φέρνει επόμενη επίσκεψη</h3>
+        <p class="mt-1 text-sm text-ink/70">Το έπαθλο μπαίνει στο wallet και εξαργυρώνεται την επόμενη φορά — με συνοδευτική αγορά.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-ink bg-white p-4 shadow-pop">
+        <div class="grid h-10 w-10 place-items-center rounded-xl border-2 border-ink bg-white text-xl shadow-popsm">🎛️</div>
+        <h3 class="mt-3 font-display font-bold">Εσύ ελέγχεις το κόστος</h3>
+        <p class="mt-1 text-sm text-ink/70">Ορίζεις τα ποσοστά των δώρων και βάζεις πλαφόν/ημέρα. Το μέσο κόστος ανά σάρωση το ξέρεις εκ των προτέρων.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-ink bg-white p-4 shadow-pop">
+        <div class="grid h-10 w-10 place-items-center rounded-xl border-2 border-ink bg-sun text-xl shadow-popsm">📧</div>
+        <h3 class="mt-3 font-display font-bold">Χτίζει λίστα πελατών</h3>
+        <p class="mt-1 text-sm text-ink/70">Κάθε παιχνίδι πιάνει ένα email. Σε μήνες έχεις βάση για campaigns και win-back.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-ink bg-white p-4 shadow-pop">
+        <div class="grid h-10 w-10 place-items-center rounded-xl border-2 border-ink bg-sky text-xl shadow-popsm">📊</div>
+        <h3 class="mt-3 font-display font-bold">Δεδομένα & ανταγωνισμός</h3>
+        <p class="mt-1 text-sm text-ink/70">Σαρώσεις, ποσοστό εξαργύρωσης, ώρες αιχμής. Και γίνεσαι «το μαγαζί με το ξυστό».</p>
+      </div>
+      <div class="rounded-2xl border-2 border-ink bg-white p-4 shadow-pop">
+        <div class="grid h-10 w-10 place-items-center rounded-xl border-2 border-ink bg-white text-xl shadow-popsm">⚖️</div>
+        <h3 class="mt-3 font-display font-bold">Νομικά καθαρό</h3>
+        <p class="mt-1 text-sm text-ink/70">Κάθε σάρωση κερδίζει κάτι → προωθητική ενέργεια λιανικής, όχι λοταρία/τζόγος.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI CALCULATOR -->
+  <section class="mt-12 rounded-3xl border-2 border-ink bg-white p-5 shadow-pop sm:p-7">
+    <h2 class="font-display text-2xl font-bold">🧮 Υπολόγισε το ROI</h2>
+    <p class="mt-1 text-sm text-ink/60">Ενδεικτικό παράδειγμα — σύρε τα πεδία για το δικό σου κατάστημα.</p>
+
+    <div class="mt-5 grid gap-7 lg:grid-cols-2">
+      <!-- inputs -->
+      <div class="space-y-5">
+        <div>
+          <div class="flex justify-between text-sm font-semibold"><label for="scans">Σαρώσεις / μήνα</label><span id="scans-v" class="font-display font-bold"></span></div>
+          <input id="scans" type="range" min="100" max="10000" step="100" value="1000" class="mt-2 w-full" />
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-semibold"><label for="rate">Ποσοστό εξαργύρωσης</label><span id="rate-v" class="font-display font-bold"></span></div>
+          <input id="rate" type="range" min="10" max="90" step="5" value="55" class="mt-2 w-full" />
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-semibold"><label for="cogs">Κόστος δώρου (COGS) ανά εξαργύρωση</label><span id="cogs-v" class="font-display font-bold"></span></div>
+          <input id="cogs" type="range" min="0.1" max="2" step="0.05" value="0.40" class="mt-2 w-full" />
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-semibold"><label for="addon">Μέση συνοδευτική αγορά</label><span id="addon-v" class="font-display font-bold"></span></div>
+          <input id="addon" type="range" min="0" max="10" step="0.5" value="3" class="mt-2 w-full" />
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-semibold"><label for="margin">Μικτό περιθώριο</label><span id="margin-v" class="font-display font-bold"></span></div>
+          <input id="margin" type="range" min="20" max="90" step="5" value="65" class="mt-2 w-full" />
+        </div>
+      </div>
+
+      <!-- outputs -->
+      <div class="space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-2xl border-2 border-ink bg-sky/40 p-4">
+            <div class="text-xs font-semibold text-ink/60">Εξαργυρώσεις / μήνα</div>
+            <div id="o-redeem" class="font-display text-3xl font-bold"></div>
+          </div>
+          <div class="rounded-2xl border-2 border-ink bg-white p-4">
+            <div class="text-xs font-semibold text-ink/60">Νέα emails / μήνα</div>
+            <div id="o-emails" class="font-display text-3xl font-bold"></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-2xl border-2 border-ink bg-white p-4">
+            <div class="text-xs font-semibold text-ink/60">Κόστος δώρων</div>
+            <div id="o-cost" class="font-display text-3xl font-bold text-amber-700"></div>
+          </div>
+          <div class="rounded-2xl border-2 border-ink bg-white p-4">
+            <div class="text-xs font-semibold text-ink/60">Επιπλέον τζίρος</div>
+            <div id="o-rev" class="font-display text-3xl font-bold"></div>
+          </div>
+        </div>
+        <div class="rounded-2xl border-2 border-ink bg-sun p-5 shadow-popsm">
+          <div class="text-xs font-bold uppercase tracking-wide text-ink/70">Καθαρό όφελος / μήνα</div>
+          <div id="o-net" class="font-display text-5xl font-bold"></div>
+          <div class="mt-1 text-xs text-ink/60">= μικτό κέρδος από συνοδευτικές αγορές − κόστος δώρων</div>
+        </div>
+      </div>
+    </div>
+    <p class="mt-4 text-[11px] text-ink/50">Τα νούμερα είναι ενδεικτικά για επεξήγηση και δεν αποτελούν εγγύηση αποτελεσμάτων. Δεν συνυπολογίζεται το breakage (κουπόνια που δεν εξαργυρώνονται ποτέ), που μειώνει κι άλλο το πραγματικό κόστος.</p>
+  </section>
+
+  <!-- SURFACES -->
+  <section class="mt-12">
+    <h2 class="font-display text-2xl font-bold">Τρεις οθόνες, μηδέν τριβή</h2>
+    <div class="mt-4 grid gap-4 sm:grid-cols-3">
+      <div>
+        <div id="prev-customer" class="grid aspect-[3/5] place-items-center overflow-hidden rounded-2xl border-2 border-ink bg-gradient-to-b from-sky/50 to-cream p-4 text-center shadow-pop">
+          <div><div class="text-5xl">📱</div><div class="mt-2 font-display font-bold">Σκάναρε &amp; κέρδισε</div><div class="text-xs text-ink/60">scratch-and-win στο κινητό</div></div>
+        </div>
+        <div class="mt-2 text-center text-sm font-semibold">Πελάτης</div>
+      </div>
+      <div>
+        <div id="prev-merchant" class="grid aspect-[3/5] place-items-center overflow-hidden rounded-2xl border-2 border-ink bg-white p-4 text-center shadow-pop">
+          <div><div class="text-5xl">📊</div><div class="mt-2 font-display font-bold">Dashboard</div><div class="text-xs text-ink/60">δώρα, στατιστικά, πελάτες</div></div>
+        </div>
+        <div class="mt-2 text-center text-sm font-semibold">Κατάστημα</div>
+      </div>
+      <div>
+        <div id="prev-cashier" class="grid aspect-[3/5] place-items-center overflow-hidden rounded-2xl border-2 border-ink bg-gradient-to-b from-green-200 to-cream p-4 text-center shadow-pop">
+          <div><div class="text-5xl">✅</div><div class="mt-2 font-display font-bold">ΕΓΚΥΡΟ</div><div class="text-xs text-ink/60">εξαργύρωση μίας χρήσης</div></div>
+        </div>
+        <div class="mt-2 text-center text-sm font-semibold">Ταμείο</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section class="mt-12 rounded-3xl border-2 border-ink bg-white p-5 shadow-pop sm:p-7">
+    <h2 class="font-display text-2xl font-bold">🔒 Χωρίς υποκλοπές</h2>
+    <p class="mt-1 text-sm text-ink/60">Ένας «κλεμμένος» κωδικός δεν αξίζει τίποτα. Γιατί:</p>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2">
+      <div class="flex gap-2 text-sm"><span>🎲</span><span><b>Δεν μαντεύεται</b> — μοναδικός κωδικός ανά sticker, ~50 bits εντροπίας.</span></div>
+      <div class="flex gap-2 text-sm"><span>1️⃣</span><span><b>Μία χρήση</b> — μόλις σαρωθεί κλειδώνει ατομικά· η αντιγραφή είναι άχρηστη.</span></div>
+      <div class="flex gap-2 text-sm"><span>✍️</span><span><b>Δεν πλαστογραφείται</b> — το κουπόνι είναι υπογεγραμμένο με HMAC.</span></div>
+      <div class="flex gap-2 text-sm"><span>🚫</span><span><b>Δεν εξαργυρώνεται δύο φορές</b> — atomic «κάψιμο» στο ταμείο.</span></div>
+      <div class="flex gap-2 text-sm"><span>🛡️</span><span><b>Anti-fraud</b> — όρια ανά πελάτη/IP, fingerprint, geo-velocity, μπλοκ self-scan προσωπικού.</span></div>
+      <div class="flex gap-2 text-sm"><span>🗄️</span><span><b>Στεγανά δεδομένα</b> — απομόνωση ανά κατάστημα σε επίπεδο βάσης (RLS), κρυπτογραφημένα PII.</span></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-12 text-center">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-2xl border-2 border-ink bg-sun px-6 py-3 font-display text-lg font-bold shadow-pop transition active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">Δες το ζωντανά στο demo →</a>
+    <p class="mt-3 text-xs text-ink/50">Σκάναρε · ξύσε · κέρδισε · στο πορτοφόλι.</p>
+  </section>
+</main>
+
+<footer class="mx-auto max-w-5xl px-4 pb-10 pt-2 text-center text-xs text-ink/40">
+  Bonusaki · loyalty scratch-and-win για καφετέριες &amp; εστίαση
+</footer>
+
+<script>
+// ---------- ROI calculator ----------
+const $ = id => document.getElementById(id);
+const eur = n => n.toLocaleString('el-GR', { style:'currency', currency:'EUR', maximumFractionDigits:0 });
+const num = n => Math.round(n).toLocaleString('el-GR');
+
+function calc(){
+  const scans  = +$('scans').value;
+  const rate   = +$('rate').value / 100;
+  const cogs   = +$('cogs').value;
+  const addon  = +$('addon').value;
+  const margin = +$('margin').value / 100;
+
+  $('scans-v').textContent  = num(scans);
+  $('rate-v').textContent   = (rate*100).toFixed(0) + '%';
+  $('cogs-v').textContent   = $('cogs').value.replace('.', ',') + ' €';
+  $('addon-v').textContent  = $('addon').value.replace('.', ',') + ' €';
+  $('margin-v').textContent = (margin*100).toFixed(0) + '%';
+
+  const redemptions = scans * rate;
+  const giftCost    = redemptions * cogs;
+  const extraRev    = redemptions * addon;
+  const grossProfit = extraRev * margin;
+  const net         = grossProfit - giftCost;
+
+  $('o-redeem').textContent = num(redemptions);
+  $('o-emails').textContent = '~' + num(scans);
+  $('o-cost').textContent   = eur(giftCost);
+  $('o-rev').textContent    = eur(extraRev);
+  $('o-net').textContent    = eur(net);
+}
+['scans','rate','cogs','addon','margin'].forEach(id => $(id).addEventListener('input', calc));
+calc();
+
+// ---------- auto-upgrade to real assets when present ----------
+function tryAsset(slotId, candidates){
+  if(!candidates.length) return;
+  const [src, ...rest] = candidates;
+  const img = new Image();
+  img.onload = () => {
+    const slot = $(slotId); if(!slot) return;
+    slot.innerHTML = '';
+    img.className = 'h-full w-full object-cover';
+    slot.classList.remove('p-4','from-sky/50','to-cream','from-green-200','bg-white','bg-gradient-to-b');
+    slot.appendChild(img);
+  };
+  img.onerror = () => tryAsset(slotId, rest);
+  img.src = src;
+}
+tryAsset('prev-customer', ['./assets/screen-customer.png','./assets/screen-customer.jpg','./assets/screen-customer.webp']);
+tryAsset('prev-merchant', ['./assets/screen-merchant.png','./assets/screen-merchant.jpg','./assets/screen-merchant.webp']);
+tryAsset('prev-cashier',  ['./assets/screen-cashier.png','./assets/screen-cashier.jpg','./assets/screen-cashier.webp']);
+
+// logo: swap the text pill for the real logo if provided
+(function(){
+  const cands = ['./assets/logo.svg','./assets/logo.png','./assets/logo.webp'];
+  (function tryLogo(list){
+    if(!list.length) return;
+    const [src, ...rest] = list;
+    const img = new Image();
+    img.onload = () => { const p=$('logo-pill'); if(!p) return; p.outerHTML = `<img src="${src}" alt="Bonusaki" class="h-9 w-auto" />`; };
+    img.onerror = () => tryLogo(rest);
+    img.src = src;
+  })(cands);
+})();
+</script>
+</body>
+</html>
